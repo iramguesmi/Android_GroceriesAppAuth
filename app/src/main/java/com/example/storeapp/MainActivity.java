@@ -15,6 +15,7 @@ import com.example.storeapp.adapter.RecentlyViewedAdapter;
 import com.example.storeapp.model.Category;
 import com.example.storeapp.model.DiscountedProducts;
 import com.example.storeapp.model.RecentlyViewed;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
     List<RecentlyViewed> recentlyViewedList;
 
     ImageView allCategory;
-    ImageView cartButton;
+    ImageView cartButton, logoutic;
+
 
 
     @Override
@@ -64,6 +66,25 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        logoutic = findViewById(R.id.logoutic);
+
+        logoutic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar.make(v, "Are you sure you want to log out ?", Snackbar.LENGTH_LONG)
+                        .setAction("Oui", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                // Code pour déconnecter l'utilisateur
+                                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                                startActivity(intent);
+                            }
+                        })
+                        .show();
+            }
+        });
+
 
 
         //ajouter les data au model
